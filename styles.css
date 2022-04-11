@@ -1,14 +1,22 @@
 :root {
     --height-todolist: 300px;
+    --height-listitem: 40px;
+
     --color-tan: #e6e2d3;
     --color-traffic-white:#f0f0f0;
+    --box-border-radius: 3px;
+    
 }
 
 html,
 body {
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    /* height: 100vh; */
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 * {
@@ -16,7 +24,9 @@ body {
     padding: 0;
 }
 
-.todo__submit, .todo__task--list {
+.todo__submit, 
+.todo__task--list, 
+ul li {
     display: flex;
     justify-content: center;
     margin: 1rem 0 2rem 0;
@@ -28,18 +38,28 @@ body {
     padding: 5px 10px;
     text-align: center;
     background-color: #008cba;
-    border-radius: 4px;
+    border-radius: var(--box-border-radius);
     border: none;
     margin-left: 4px;
 }
 
+ul {
+    overflow-x: hidden;
+    overflow: auto;
+    height: var(--height-todolist);
+}
+
 ul li {
     list-style: none;
+    line-height: var(--height-listitem);
+    background-color: var(--color-tan);
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    justify-content: space-between;
 }
 
 .todo__task--list {
-    justify-content: space-evenly;
-    margin: 0 15% 0 15%;
+    justify-content: space-between;
+    margin: 0 10% 0 10%;
 }
 
 section {
@@ -47,8 +67,96 @@ section {
     background-color: #f0f0f0;
     padding: 5px;
     border-radius: 10px;
+    height: var(--height-todolist) + var(--height-listitem);
+    width: 48%;
 }
 
 header {
     font-weight: bold;
+    margin: 0.5rem 0 0.5rem 0.5rem;
 }
+
+.todo__task--content {
+    text-align: center;
+    justify-content: center;
+    width: 70%;
+}
+
+ul li {
+    height: var(--height-listitem);
+}
+
+.todo__task--content{
+    line-height: var(--height-listitem);
+    overflow: hidden;
+}
+
+ul li button {
+    margin-top: 7px;
+}
+
+.todo__task--btns, 
+.todo__task--rightBtns {
+    margin-right: 2%;
+}
+
+.todo__task--leftBtns {
+    margin-left: 2%;
+}
+
+.deletbtnClass,
+.deletbtn,
+.editbtn,
+.completebtn {
+    color: white;
+    border-radius: var(--box-border-radius);
+    border: none;
+}
+
+.editbtn {
+    background-color: #008cba;
+}
+
+.deletbtnClass, 
+.deletbtn {
+    background-color: #c94c4c;
+}
+
+.completebtn {
+    background-color: #4caf50;
+}
+
+ul li svg {
+    width: 18px;
+    height: 18px;
+    padding: 3px;
+    fill: white;
+}
+
+svg {
+    pointer-events: none;
+}
+
+@media only screen and (max-width: 802px) {
+    html, 
+    body {
+        overflow: auto;
+    }
+    .todo__task--list {
+        display: block;
+    }
+    section {
+        width: 96%;
+        margin-bottom: 3%;
+    }
+    @media only screen and (max-height: 800px) {
+        html,
+        body {
+            position: inline;
+            top: 0%;
+            -ms-transform: none;
+            transform: none;
+        }
+    }
+}
+
